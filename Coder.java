@@ -8,7 +8,11 @@ public class Coder
 
 		str = setup(str);
 
-		System.out.println(findKeyLength(str));
+		String key = findKey(str);
+
+		str = decode(str);
+
+		System.out.println(str);
 
 		String b = encode("abcdefg", "ab");
 
@@ -232,6 +236,61 @@ public class Coder
 	public static int findKeyLength(String str)
 	{
 		return findGCD(findRepeats(str));
+	}
+
+	public static String sub(String str, int key, int shift)
+	{
+		String result= "";
+		char temp;
+
+		for(int i=shift; i<str.length(); i+= key)
+		{
+			temp = str.charAt(i);
+			result += String.valueOf(temp);
+		}
+
+		return result;
+	}
+
+	public static String findKey(String str)
+	{
+		String result = "";
+		int length = findKeyLength(str);
+		String temp, keyLetter;
+
+		for (int i=0; i<length; i++)
+		{
+			temp = sub(str, length, i);
+			keyLetter = findKeyLetter(temp);
+			result += keyLetter;
+		}
+
+		return result;
+	}
+
+	public static String unprocessLetter(String a, String b)
+	{
+		return intToString(stringToInt(a)-stringToInt(b)+26);
+	}
+
+	public static String unprocessLine(String a, String b)
+	{
+		String result = "";
+
+		for (int i=0; i<a.length() && i<b.length(); i++)
+		{
+			result += unprocessLetter(a.substring(i,i+1), b.substring(i,i+1));
+		}
+
+		return result;
+	}
+
+	public static String decode(String str)
+	{
+		String key = findKey(str);
+		String temp = generateKey(str,key);
+
+		return unprocessLine(str, temp);
 	}
 }
 
