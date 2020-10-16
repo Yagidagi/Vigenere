@@ -10,13 +10,11 @@ public class Coder
 
 		String key = findKey(str);
 
-		str = decode(str);
+		String result = decrypt(str);
 
-		System.out.println(str);
+		System.out.println(result);
 
-		String b = encode("abcdefg", "ab");
-
-		System.out.println(b);
+		System.out.println(key);
 	}
 
 	static 	int[] map = {4,19,0,14,8,13,18,7,17,3,11,2,20,12,22,5,6,24,15,1,21,10,9,23,16,25};
@@ -285,12 +283,19 @@ public class Coder
 		return result;
 	}
 
-	public static String decode(String str)
+	public static String decode(String str, String key)
 	{
-		String key = findKey(str);
 		String temp = generateKey(str,key);
 
 		return unprocessLine(str, temp);
+	}
+
+	public static String decrypt(String str)
+	{
+		String key = findKey(str);
+		
+		return decode(str, key);
+
 	}
 }
 
