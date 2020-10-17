@@ -99,7 +99,7 @@ public class Coder
 		int result = 0;
 		for(int i=0; i<26;i++)
 		{
-			result = result + Math.abs((arr[i][0]- map[i]));
+			result = result + (26-i)* Math.abs((arr[i][0]- map[i]));
 		}
 
 		return result;
