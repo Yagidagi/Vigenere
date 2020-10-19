@@ -8,17 +8,6 @@ public class Coder
 		String str = args[1];
 		String key = args[2];
 
-		System.out.println("You want to " + args[0]);
-
-		if(args[0].equalsIgnoreCase("encode"))
-			System.out.print("Plaintext: ");
-		if(args[0].equalsIgnoreCase("decode"))
-			System.out.print("Ciphertext: ");
-
-		System.out.println(args[1]);
-
-		System.out.println("Key: " + key);
-
 		str=setup(str);
 		key=setup(key);
 
